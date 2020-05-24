@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9e8492b6-e826-4dd4-a992-f5c5188a7e3c" name="Default Changelist" comment="" />
+    <list default="true" id="9e8492b6-e826-4dd4-a992-f5c5188a7e3c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controller/MemberListController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controller/ajax_member_list.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/member.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/member.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/page.php" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,7 +19,11 @@
       <executable />
     </execution>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1c6eGiIeXsm3hsOe0pyomDzQG4h" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -20,6 +31,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -41,7 +53,8 @@
       <updated>1589853377358</updated>
       <workItem from="1589853380615" duration="14385000" />
       <workItem from="1589884537507" duration="16226000" />
-      <workItem from="1590022170964" duration="33241000" />
+      <workItem from="1590022170964" duration="34276000" />
+      <workItem from="1590213971466" duration="17769000" />
     </task>
     <servers />
   </component>
@@ -57,9 +70,9 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="301" y="37" width="837" height="825" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1590035572035" />
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1590067454663">
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1590220987503">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1590067454663" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1590220987503" />
   </component>
 </project>

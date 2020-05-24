@@ -1,26 +1,19 @@
 <?php
 error_reporting(E_ALL);
+
 require '../controller/config.php';
-require '../controller/db.php';
-$data = new DB();
+require_once __DIR__ . '/../controller/MemberListController.php';
 
-//取得指定頁次,判斷沒有GET資訊時要給1
-$cur_page = (empty($_GET['page'])) ? 1 : (int)$_GET['page'];
-
-//每頁幾筆資料
-$per_page = 5;
-//計算全部幾筆資料
-$totol_num = "SELECT count(*) FROM NuEIP_test.account_info ";
-$page = $data->connectDB()->query($totol_num)->fetch_all(1);
-
-//全部有幾頁
-$totol_page = ceil($page[0]['count(*)'] / $per_page);
+//呼叫切割出去的物件
+$method = new MemberListController();
+//指定可以變更提取筆樹的參數
+$method->setPerPage( 5);
+$val = $method->getDataList();
 
 
-//每次要從總數量的文章筆數的第幾序位撈出幾筆資料
-$sql = 'SELECT * FROM NuEIP_test.account_info ORDER BY id DESC LIMIT ' . ($cur_page - 1) * $per_page . ',' . $per_page;
-$val = $data->query($sql)->fetch_all(1);
 
+//定義分頁
+$pagination = (!empty($val['pagination'])) ? $val['pagination'] : [] ;
 ?>
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
@@ -57,24 +50,25 @@ $val = $data->query($sql)->fetch_all(1);
             }
 
             function sendCreat() {
-                let Caccount = $('.account').val();
-                let Cname = $('.username').val();
-                let Csex = $('.sex').val();
-                let Cbirthday = $('.birthday').val();
-                let Cemail = $('.email').val();
-                let Cremark = $('.remark').val();
+                let Caccount = $('.Caccount').val();
+                let Cname = $('.Cusername').val();
+                let Csex = $('.Csex').val();
+                let Cbirthday = $('.Cbirthday').val();
+                let Cemail = $('.Cemail').val();
+                let Cremark = $('.Cremark').html();
 
                 $.ajax({
                     type: 'POST',
                     dataType: 'JSON',
-                    url: '../controller/creatAjax.php',
+                    url: '../controller/ajax_member_list.php',
                     data: {
-                        creat_accont:Caccount,
-                        creat_name:Cname,
-                        creat_sex:Csex,
-                        creat_birthday:Cbirthday,
-                        creat_email:Cemail,
-                        creat_remark:Cremark
+                        method: 'insert',
+                        account:Caccount,
+                        name:Cname,
+                        sex:Csex,
+                        birthday:Cbirthday,
+                        email:Cemail,
+                        remark:Cremark
                 },
                     success: function(creat_value) {
                         alert(creat_value['status']);
@@ -83,25 +77,24 @@ $val = $data->query($sql)->fetch_all(1);
                 });
             }
 
-            function showEditLB(id,account,username,sex,birthday,email,userremark) {
+            function showEditLB(id,account,username,sex,birthday,email,remark) {
                 let get_id = id;
                 let get_account = account;
-                let gee_name = username;
-                let get_sex = sex;
-                let get_birthdat = birthday;
+                let get_name = username;
+                let get_birthday = birthday;
                 let get_email = email;
-                let get_userremark = userremark;
+                let get_userremark = remark;
 
-                console.log(get_id);
 
                 $('.lb_update').css('display' , 'block');
                 $('.userId').val(get_id);
                 $('.Eaccount').val(get_account);
-                $('.Eusername').val(gee_name);
-                $('.Esex').val(get_sex);
-                $('.Ebirthday').val(get_birthdat);
+                $('.Eusername').val(get_name);
+                $('.Esex[value="'+sex+'"]').attr('checked', true);
+                $('.Ebirthday').val(get_birthday);
                 $('.Eemail').val(get_email);
                 $('.Eremark').html(get_userremark);
+
             }
 
             function hideEditLB() {
@@ -119,19 +112,20 @@ $val = $data->query($sql)->fetch_all(1);
 
                 $.ajax({
                     type: 'POST',
-                    datatype: 'JSON',
-                    url: '../controller/editAjax.php',
+                    dataType: 'JSON',
+                    url: '../controller/ajax_member_list.php',
                     data: {
-                        edit_id: eId,
-                        edit_account: eAccount,
-                        edit_name: eName,
-                        edit_sex: eSex,
-                        edit_birthday: eBirthday,
-                        edit_email: eEmail,
-                        edit_remark: eRemark
+                        method:'update',
+                        id: eId,
+                        account: eAccount,
+                        name: eName,
+                        sex: eSex,
+                        birthday: eBirthday,
+                        email: eEmail,
+                        remark: eRemark
                     },
-                    success: function (edit_value) {
-                        alert(edit_value['status']);
+                    success: function (d) {
+                        alert(d['status']);
                         hideEditLB();
                     }
                 });
@@ -191,14 +185,14 @@ $val = $data->query($sql)->fetch_all(1);
                             <div class="row">
                                 <div class="col-md-12 mb-3">
                                     <label for="account">帳號</label>
-                                    <input type="text" class="form-control account" id="account" placeholder="請輸入6~12位英數文字" value="" required>
+                                    <input type="text" class="form-control Caccount" id="account" placeholder="請輸入6~12位英數文字" value="" required>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="username">姓名</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control username" id="username" placeholder="請輸入姓名" value="" required>
+                                    <input type="text" class="form-control Cusername" id="username" placeholder="請輸入姓名" value="" required>
                                     <div class="invalid-feedback" style="width: 100%;">
                                         Your username is required.
                                     </div>
@@ -209,12 +203,12 @@ $val = $data->query($sql)->fetch_all(1);
                                 <label for="sex">性別：</label>
                                 <br/>
                                 <div style="padding-top: 5px;padding-left: 20px;">
-                                    <input class="form-check-input sex" type="radio" name="sex" id="exampleRadios1" value="0" >
+                                    <input class="form-check-input Csex" type="radio" name="sex" id="exampleRadios1" value="0" >
                                     <label class="form-check-label" for="exampleRadios1">
                                         男性
                                     </label>
                                     <br/>
-                                    <input class="form-check-input sex" type="radio" name="sex" id="exampleRadios2" value="1">
+                                    <input class="form-check-input Csex" type="radio" name="sex" id="exampleRadios2" value="1">
                                     <label class="form-check-label" for="exampleRadios2">
                                         女性
                                     </label>
@@ -224,13 +218,13 @@ $val = $data->query($sql)->fetch_all(1);
                             <div class="mb-3">
                                 <label for="username">生日</label>
                                 <div class="input-group">
-                                    <input type="date" class="form-control birthday" id="birthday" required>
+                                    <input type="date" class="form-control Cbirthday" id="birthday" required>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                                <input type="email" class="form-control email" id="email" placeholder="you@example.com" value="" required>
+                                <input type="email" class="form-control Cmail" id="email" placeholder="you@example.com" value="" required>
                                 <div class="invalid-feedback">
                                     Please enter a valid email address for shipping updates.
                                 </div>
@@ -239,7 +233,7 @@ $val = $data->query($sql)->fetch_all(1);
                             <div class="mb-3">
                                 <label for="remark">備註</label>
                                 <div class="input-group">
-                                    <textarea name="remark" class="remark"></textarea>
+                                    <textarea name="Cremark" class="Cremark"></textarea>
                                 </div>
                             </div>
 
@@ -256,7 +250,7 @@ $val = $data->query($sql)->fetch_all(1);
             <!--            編輯資料的燈箱-->
 
             <div class="lb_update" style="width:100%;height:130%;background-color: rgba(0,0,0,0.5); z-index: 999999; position: absolute; left: 0; top: 0; display: none ">
-                <div class="lb_uptade_ontent" style="position: relative; top: 15%;left: 25%; width: 50%; height:73%;background-color: white;">
+                <div class="lb_uptade_ontent" style="position: relative; top: 15%;left: 25%; width: 50%; height:750px;background-color: white;">
                     <div class="py-4 text-left" style="padding-left: 5%;">
                         <h2>修改資料</h2>
                     </div>
@@ -353,7 +347,7 @@ $val = $data->query($sql)->fetch_all(1);
                             <tbody>
                             <?php
                             $sex = '';
-                            foreach ($val as $k => $v){
+                            foreach ($val['data'] as $k => $v){
                                $birthday= date("Y/m/d ",strtotime($v['birthday']));
                                 switch ($v['sex']){
                                     case '0':
@@ -382,7 +376,12 @@ $val = $data->query($sql)->fetch_all(1);
                 </div>
             </div>
             <div style="text-align: center;">
-               <?php require 'page.php'; ?>
+                <div style="text-align: center;">
+                    <label>每頁共<?php echo count($val['data']) ;?>筆</label>
+                </div>
+                <?php
+                    require 'pagination.php';
+                ?>
             </div>
         </div>
     </body>
