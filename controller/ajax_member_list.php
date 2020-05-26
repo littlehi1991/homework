@@ -29,6 +29,7 @@ switch ($request['method']){
         echo $rs;exit;
         break;
     case 'delete':
+        if(empty($request['id']))
         break;
     default:
         echo json_encode(['status' => false, 'des' => '查無方法，請確認method 參數符合規範']);exit;

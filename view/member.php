@@ -55,7 +55,8 @@ $pagination = (!empty($val['pagination'])) ? $val['pagination'] : [] ;
                 let Csex = $('.Csex').val();
                 let Cbirthday = $('.Cbirthday').val();
                 let Cemail = $('.Cemail').val();
-                let Cremark = $('.Cremark').html();
+                let Cremark = $('.Cremark').val();
+
 
                 $.ajax({
                     type: 'POST',
@@ -85,7 +86,6 @@ $pagination = (!empty($val['pagination'])) ? $val['pagination'] : [] ;
                 let get_email = email;
                 let get_userremark = remark;
 
-
                 $('.lb_update').css('display' , 'block');
                 $('.userId').val(get_id);
                 $('.Eaccount').val(get_account);
@@ -93,8 +93,7 @@ $pagination = (!empty($val['pagination'])) ? $val['pagination'] : [] ;
                 $('.Esex[value="'+sex+'"]').attr('checked', true);
                 $('.Ebirthday').val(get_birthday);
                 $('.Eemail').val(get_email);
-                $('.Eremark').html(get_userremark);
-
+                $('.Eremark').val(get_userremark);
             }
 
             function hideEditLB() {
@@ -108,7 +107,7 @@ $pagination = (!empty($val['pagination'])) ? $val['pagination'] : [] ;
                 let eSex = $('.Esex').val();
                 let eBirthday = $('.Ebirthday').val();
                 let eEmail = $('.Eemail').val();
-                let eRemark = $('.Eremark').html();
+                let eRemark = $('.Eremark').val();
 
                 $.ajax({
                     type: 'POST',
@@ -185,14 +184,14 @@ $pagination = (!empty($val['pagination'])) ? $val['pagination'] : [] ;
                             <div class="row">
                                 <div class="col-md-12 mb-3">
                                     <label for="account">帳號</label>
-                                    <input type="text" class="form-control Caccount" id="account" placeholder="請輸入6~12位英數文字" value="" required>
+                                    <input type="text" class="form-control Caccount" id="account" placeholder="請輸入6~12位英數文字" required>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="username">姓名</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control Cusername" id="username" placeholder="請輸入姓名" value="" required>
+                                    <input type="text" class="form-control Cusername" id="username" placeholder="請輸入姓名"  required>
                                     <div class="invalid-feedback" style="width: 100%;">
                                         Your username is required.
                                     </div>
@@ -218,13 +217,13 @@ $pagination = (!empty($val['pagination'])) ? $val['pagination'] : [] ;
                             <div class="mb-3">
                                 <label for="username">生日</label>
                                 <div class="input-group">
-                                    <input type="date" class="form-control Cbirthday" id="birthday" required>
+                                    <input type="date" class="form-control Cbirthday" id="birthday"  required>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                                <input type="email" class="form-control Cmail" id="email" placeholder="you@example.com" value="" required>
+                                <input type="email" class="form-control Cemail" id="email" placeholder="you@example.com" required>
                                 <div class="invalid-feedback">
                                     Please enter a valid email address for shipping updates.
                                 </div>

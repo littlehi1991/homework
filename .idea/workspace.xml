@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e8492b6-e826-4dd4-a992-f5c5188a7e3c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controller/MemberListController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controller/ajax_member_list.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/ajax_member_list.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/ajax_member_list.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/member.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/member.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/page.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +51,7 @@
       <workItem from="1589853380615" duration="14385000" />
       <workItem from="1589884537507" duration="16226000" />
       <workItem from="1590022170964" duration="34276000" />
-      <workItem from="1590213971466" duration="17769000" />
+      <workItem from="1590213971466" duration="22349000" />
     </task>
     <servers />
   </component>
