@@ -72,7 +72,8 @@ $pagination = (!empty($val['pagination'])) ? $val['pagination'] : [] ;
                         remark:Cremark
                 },
                     success: function(creat_value) {
-                        alert(creat_value['status']);
+                        // alert(creat_value['status']);
+                        alert(creat_value['status']) ? "" : location.reload();
                         hideCreatLB();
                     }
                 });
@@ -123,8 +124,9 @@ $pagination = (!empty($val['pagination'])) ? $val['pagination'] : [] ;
                         email: eEmail,
                         remark: eRemark
                     },
-                    success: function (d) {
-                        alert(d['status']);
+                    success: function (update_value) {
+                        // alert(d['status']);
+                        alert(update_value['status']) ? "" : location.reload();
                         hideEditLB();
                     }
                 });
@@ -158,9 +160,7 @@ $pagination = (!empty($val['pagination'])) ? $val['pagination'] : [] ;
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">關於我 <span class="sr-only">(current)</span></a>
-                        </li>
+
                     </ul>
                     <form class="form-inline mt-2 mt-md-0">
                         <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
@@ -178,18 +178,19 @@ $pagination = (!empty($val['pagination'])) ? $val['pagination'] : [] ;
                 <div class="lb_creat_content" style="position: relative; top: 15%;left: 25%; width: 40%; height: 750px; background-color: white;">
                     <div class="py-4 text-left" style="padding-left: 5%;">
                         <h2>新增帳號</h2>
+                        <span style="color: red;">*為必填欄位</span>
                     </div>
                     <div class="col-md-11"style="padding-left: 5%;">
                         <form class="needs-validation" novalidate method="post">
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <label for="account">帳號</label>
+                                    <label for="account"><span style="color: red;">*</span> 帳號</label>
                                     <input type="text" class="form-control Caccount" id="account" placeholder="請輸入6~12位英數文字" required>
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="username">姓名</label>
+                                <label for="username"><span style="color: red;">*</span> 姓名</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control Cusername" id="username" placeholder="請輸入姓名"  required>
                                     <div class="invalid-feedback" style="width: 100%;">
@@ -199,7 +200,7 @@ $pagination = (!empty($val['pagination'])) ? $val['pagination'] : [] ;
                             </div>
 
                             <div class="mb-3">
-                                <label for="sex">性別：</label>
+                                <label for="sex"><span style="color: red;">*</span> 性別：</label>
                                 <br/>
                                 <div style="padding-top: 5px;padding-left: 20px;">
                                     <input class="form-check-input Csex" type="radio" name="sex" id="exampleRadios1" value="0" >
@@ -215,14 +216,14 @@ $pagination = (!empty($val['pagination'])) ? $val['pagination'] : [] ;
                             </div>
 
                             <div class="mb-3">
-                                <label for="username">生日</label>
+                                <label for="username"><span style="color: red;">*</span> 生日</label>
                                 <div class="input-group">
                                     <input type="date" class="form-control Cbirthday" id="birthday"  required>
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="email">Email <span class="text-muted">(Optional)</span></label>
+                                <label for="email"><span style="color: red;">*</span> Email </label>
                                 <input type="email" class="form-control Cemail" id="email" placeholder="you@example.com" required>
                                 <div class="invalid-feedback">
                                     Please enter a valid email address for shipping updates.
@@ -252,19 +253,20 @@ $pagination = (!empty($val['pagination'])) ? $val['pagination'] : [] ;
                 <div class="lb_uptade_ontent" style="position: relative; top: 15%;left: 25%; width: 50%; height:750px;background-color: white;">
                     <div class="py-4 text-left" style="padding-left: 5%;">
                         <h2>修改資料</h2>
+                        <span style="color: red;">*為必填欄位</span>
                     </div>
                     <div class="col-md-11"style="padding-left: 5%;">
                         <form class="needs-validation" novalidate>
                             <input type="hidden" class="userId" value="">
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <label for="account">帳號</label>
+                                    <label for="account"><span style="color: red;">*</span> 帳號</label>
                                     <input type="text" class="form-control Eaccount" id="account" placeholder="請輸入6~12位英數文字" value="" required>
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="username">姓名</label>
+                                <label for="username"><span style="color: red;">*</span> 姓名</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control Eusername" id="username" placeholder="請輸入姓名" value="" required >
                                     <div class="invalid-feedback" style="width: 100%;">
@@ -274,7 +276,7 @@ $pagination = (!empty($val['pagination'])) ? $val['pagination'] : [] ;
                             </div>
 
                             <div class="mb-3">
-                                <label for="sex">性別：</label>
+                                <label for="sex"><span style="color: red;">*</span> 性別：</label>
                                 <br/>
                                 <div style="padding-top: 5px;padding-left: 20px;">
                                     <input class="form-check-input Esex" type="radio" name="sex" id="exampleRadios1" value="0" >
@@ -290,14 +292,14 @@ $pagination = (!empty($val['pagination'])) ? $val['pagination'] : [] ;
                             </div>
 
                             <div class="mb-3">
-                                <label for="username">生日</label>
+                                <label for="username"><span style="color: red;">*</span> 生日</label>
                                 <div class="input-group">
                                     <input type="date" class="form-control Ebirthday" id="birthday" value="">
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="email">Email <span class="text-muted">(Optional)</span></label>
+                                <label for="email"><span style="color: red;">*</span> Email</label>
                                 <input type="email" class="form-control Eemail" id="email" placeholder="you@example.com" value="">
                                 <div class="invalid-feedback">
                                     Please enter a valid email address for shipping updates.
@@ -347,7 +349,7 @@ $pagination = (!empty($val['pagination'])) ? $val['pagination'] : [] ;
                             <?php
                             $sex = '';
                             foreach ($val['data'] as $k => $v){
-                               $birthday= date("Y/m/d ",strtotime($v['birthday']));
+                               $birthday= date("Y年m月d日 ",strtotime($v['birthday']));
                                 switch ($v['sex']){
                                     case '0':
                                         $sex = '男';
